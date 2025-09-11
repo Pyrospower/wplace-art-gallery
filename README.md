@@ -1,43 +1,73 @@
-# Astro Starter Kit: Minimal
+# wplace-art-gallery
 
-```sh
-bun create astro@latest -- --template minimal
+A simple web gallery that displays a list of pixel arts I worked on in [wplace](https://wplace.live).
+
+This project uses [Astro](https://astro.build) for fast static rendering, and Content Collections to manage the pixel art data in a structured way.
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/pixel-art-wplace-gallery.git
+cd pixel-art-wplace-gallery
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. Install dependencies:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+bun install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Usage
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. Start the development server:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+bun dev
+```
+
+Open http://localhost:4321 in your browser to view the gallery.
+
+2. Build for production:
+
+```bash
+bun build
+```
+
+Static files will be generated in the `dist/` folder.
+
+3. Add content:
+
+- Create Markdown files in src/content/pixel-arts/ (e.g., `watamelon.md`).
+- Example frontmatter in a Markdown file:
+
+```markdown
+---
+name: "My First Pixel Art"
+image: "/images/my-art.png"
+coords:
+  tlX: 676
+  tlY: 940
+  pxX: 571
+  pxY: 508
+source: "Inspired by r/place 2022"
+---
+
+Optional description here.
+```
+
+4. Deploy to a host like [Vercel](https://vercel.com), [Netlify](https://www.netlify.com), or [GitHub Pages](https://pages.github.com) – Astro is perfect for this!
 
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
+| Command               | Action                                           |
+| :-------------------- | :----------------------------------------------- |
+| `bun install`         | Installs dependencies                            |
 | `bun dev`             | Starts local dev server at `localhost:4321`      |
 | `bun build`           | Build your production site to `./dist/`          |
 | `bun preview`         | Preview your build locally, before deploying     |
 | `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
