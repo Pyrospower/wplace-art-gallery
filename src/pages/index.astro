@@ -1,16 +1,61 @@
 ---
 import "../styles/global.css";
+
+import { getCollection } from "astro:content";
+
+const pixelArts = await getCollection("pixelArt");
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/wplace-art-gallery//favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+	<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+        <header class="w-full max-w-7xl text-center py-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Pixel Art Wplace Gallery</h1>
+            <p class="text-lg text-gray-600">
+				A collection of pixel arts I worked on in Wplace, with coordinates and sources.
+			</p>
+        </header>
+
+        <main class="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {pixelArts.map((art) => (
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+				<img 
+					src={`/wplace-art-gallery/${art.data.image}`} 
+					alt={art.data.name} 
+					class="w-full h-auto transition-transform duration-300 hover:scale-110"
+				/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">{art.data.name}</h2>
+                        {art.data.coords && (
+                            <p class="text-sm text-gray-600 mb-2">
+                                Coords: (Tl X: {art.data.coords.tlX}, Tl Y: {art.data.coords.tlY}, Px X: {art.data.coords.pxX}, Px Y: {art.data.coords.pxY})
+                            </p>
+                        )}
+                        {art.data.source && (
+                            <p class="text-sm text-gray-600">
+                                <a
+									href={art.data.source}
+									class="text-blue-500 hover:underline"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Source
+								</a>
+                            </p>
+                        )}
+                    </div>
+                </div>
+            ))}
+        </main>
+
+        <footer class="w-full max-w-7xl text-center py-8 mt-8 text-gray-500 text-sm">
+            <p>Built with <a href="https://astro.build" class="text-blue-500 hover:underline" target="_blank">Astro</a></p>
+        </footer>
+    </body>
 </html>
