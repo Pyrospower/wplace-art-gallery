@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { Image } from "astro:assets";
 
 import { getCollection } from "astro:content";
 
@@ -26,11 +27,15 @@ const pixelArts = await getCollection("pixelArt");
             {pixelArts.map((art) => (
                 <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
                     <div class="flex items-center justify-center h-64 bg-gray-200">
-                        <img 
-                            src={`/wplace-art-gallery/${art.data.image}`} 
-                            alt={art.data.name}
-                            class="max-w-full max-h-full object-contain transition-transform duration-300 hover:scale-110 image-rendering-pixelated"
-                        />
+						<Image 
+							src={`/wplace-art-gallery/${art.data.image}`} 
+							alt={art.data.name}
+							width={240}
+							height={300}
+							format="avif"
+							class="max-w-full max-h-full object-contain transition-transform duration-300 hover:scale-110"
+							style="image-rendering: pixelated;"
+						/>
                     </div>
                     <div class="p-4">
                         <h2 class="text-xl font-semibold text-gray-800 mb-2">{art.data.name}</h2>
